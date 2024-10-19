@@ -20,12 +20,12 @@ def test_response_json() -> None:
     mock_get_price_stocks = Mock(return_value={"AAPL": 150.00, "GOOGL": 3000.00})
 
     # Замена реальных функций моками
-    with patch('src.views.read_data_from_excel', mock_read_data_from_excel):
-        with patch('src.views.greeting', mock_greeting):
-            with patch('src.views.card_information', mock_card_information):
-                with patch('src.views.top_transactions', mock_top_transactions):
-                    with patch('src.views.get_currency_rates', mock_get_currency_rates):
-                        with patch('src.views.get_price_stocks', mock_get_price_stocks):
+    with patch("src.views.read_data_from_excel", mock_read_data_from_excel):
+        with patch("src.views.greeting", mock_greeting):
+            with patch("src.views.card_information", mock_card_information):
+                with patch("src.views.top_transactions", mock_top_transactions):
+                    with patch("src.views.get_currency_rates", mock_get_currency_rates):
+                        with patch("src.views.get_price_stocks", mock_get_price_stocks):
                             # Вызов тестируемой функции
                             result = response_json(date)
 
@@ -35,7 +35,7 @@ def test_response_json() -> None:
         "cards": {"card1": "Info1", "card2": "Info2"},
         "top_transactions": [{"amount": 50, "category": "Transport"}],
         "exchange_rates": {"USD": 1.0, "EUR": 0.85},
-        "stocks": {"AAPL": 150.00, "GOOGL": 3000.00}
+        "stocks": {"AAPL": 150.00, "GOOGL": 3000.00},
     }
 
     assert isinstance(result, str)
@@ -44,7 +44,7 @@ def test_response_json() -> None:
 
 def test_response_json_invalid_date_format():
     invalid_date = "invalid-date"
-    with unittest.mock.patch('src.views.response_json') as mock_func:
+    with unittest.mock.patch("src.views.response_json") as mock_func:
         mock_func.side_effect = ValueError("Invalid date format")
 
         with pytest.raises(ValueError):

@@ -38,7 +38,7 @@ PATH_TO_EXCEL = os.path.join(os.path.dirname(__file__), "..", "data", "operation
 
 def response_json(date: str) -> Any:
     """Основная функция принимающая на вход строку с датой и временем в формате
-        YYYY-MM-DD HH:MM:SS и возвращающую JSON-ответ"""
+    YYYY-MM-DD HH:MM:SS и возвращающую JSON-ответ"""
     transactions = read_data_from_excel(PATH_TO_EXCEL)
     greetings = greeting(date)
     cards = card_information(transactions)

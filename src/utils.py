@@ -102,12 +102,16 @@ def top_transactions(transactions_df: pd.DataFrame) -> list[dict[str, Any | None
         logger.info("Сортировка транзакций по сумме платежа")
         transactions_df = transactions_df.sort_values(by="Сумма платежа", ascending=False, key=lambda x: abs(x))
         # Выбор топ-5 транзакций
-        top_5_transactions = transactions_df.head(5).to_dict('records')
+        top_5_transactions = transactions_df.head(5).to_dict("records")
         # Преобразование результатов в список словарей
         result = []
         for transaction in top_5_transactions:
-            operation = {"date": transaction.get("Дата операции"), "amount": transaction.get("Сумма платежа"),
-                         "category": transaction.get("Категория"), "description": transaction.get("Описание")}
+            operation = {
+                "date": transaction.get("Дата операции"),
+                "amount": transaction.get("Сумма платежа"),
+                "category": transaction.get("Категория"),
+                "description": transaction.get("Описание"),
+            }
             result.append(operation)
         logger.info("Выполнение сортировки транзакций по сумме платежа завершено")
 
